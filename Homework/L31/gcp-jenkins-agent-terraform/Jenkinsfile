@@ -1,0 +1,22 @@
+pipeline {
+    agent {
+        label 'gce-debian'
+    }
+
+    stages {
+        stage('Проверка') {
+            steps {
+                sh 'echo "Задача выполняется на динамическом агенте в Google Cloud!"'
+                sh 'java -version'
+                sh 'pwd'
+            }
+        }
+    }
+
+    // После завершения задачи Jenkins автоматически удалит VM в Google Cloud.
+    post {
+        always {
+            echo 'Задача завершена. Агент будет удален.'
+        }
+    }
+}

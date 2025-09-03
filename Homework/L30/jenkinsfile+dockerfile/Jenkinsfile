@@ -1,0 +1,46 @@
+pipeline {
+    agent { label 'linux-builder-gcp' }
+
+    parameters {
+        string(name: 'APP_VERSION', defaultValue: '1.0', description: 'Версия приложения')
+        booleanParam(name: 'RUN_DEPLOY', defaultValue: false, description: 'Разрешить деплой?')
+    }
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo "Стадия Build..."
+            }
+        }
+        stage('Deploy') {
+            when {
+                allOf {
+                     branch 'main'
+                     expression { params.RUN_DEPLOY }
+                }
+            }
+            steps {
+                script {
+                    try {
+                        echo "Начинаем деплой..."
+                        def imageName = "my-app:${params.APP_VERSION}"
+                        
+                        echo "Собираем Docker-образ с тегом: ${imageName}"
+                        sh "docker build -t ${imageName} ."
+                        
+                        echo "Docker-образ успешно собран!"
+                    } catch (e) {
+                        echo "Деплой не удался!"
+                        error "Deployment failed: ${e.getMessage()}"
+                    }
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            echo 'Завершение пайплайна.'
+        }
+    }
+}
