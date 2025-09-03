@@ -5,4 +5,4 @@
 *.tfstate.backup
 *.tfvars
 *.tfvars.json
-.obsidian
+.obsidian/
