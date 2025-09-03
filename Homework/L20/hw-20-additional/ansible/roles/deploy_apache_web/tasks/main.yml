@@ -1,0 +1,50 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for deploy_apache_web
+
+- block: # Block for REDHAT
+    - name: Install Apache Web Server for RedHat
+      yum:
+        name: httpd
+        state: latest
+    - name: Start Web Server service for RedHat
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+  when: ansible_os_family == "RedHat"
+
+- block: # Block for DEBIAN/Ubuntu
+    - name: Install Apache Web Server for Ubuntu
+      apt:
+        name: apache2
+        state: latest
+    - name: Start Web Server service for Ubuntu
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+  when: ansible_os_family == "Debian"
+
+- name: Generate INDEX.HTML file
+  template:
+    src: index.j2
+    dest: "{{ destin_folder }}/index.html"
+    mode: 0555
+  notify:
+    - Restart Apache RedHat
+    - Restart Apache Ubuntu
+
+- name: Copy Home Page files to Web Server
+  copy:
+    src: "{{ item }}"
+    dest: "{{ destin_folder }}"
+    mode: 0555
+  loop:
+      - "picture_1.png"
+      - "picture_2.png"
+      - "picture_3.png"
+      - "picture_4.png"
+  notify:
+    - Restart Apache RedHat
+    - Restart Apache Ubuntu

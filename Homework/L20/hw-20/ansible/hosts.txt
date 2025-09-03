@@ -1,0 +1,4 @@
+[servers_internet]
+linux1 ansible_host=77.110.122.222
+[servers_local]
+linux2 ansible_host=192.168.122.177

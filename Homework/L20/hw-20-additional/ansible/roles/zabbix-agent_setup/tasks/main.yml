@@ -1,0 +1,35 @@
+---
+
+- name: Установка Zabbix репозитория
+  get_url:
+    url: https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb
+    dest: /tmp/zabbix-release.deb
+
+- name: Добавление Zabbix репозитория (Ubuntu)
+  command: dpkg -i /tmp/zabbix-release.deb
+  register: zabbix_repo_added
+  changed_when: "'already exists in the database' not in zabbix_repo_added.stderr"
+- name: Обновление кэша пакетов
+  apt:
+   update_cache: yes
+- name: Установка Zabbix агента
+  apt:
+    name: zabbix-agent
+    state: present
+- name: Настройка zabbix_agentd.conf
+  template:
+    src: zabbix_agentd.conf.j2
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart zabbix-agent
+- name: Включение и запуск службы zabbix-agent
+  service:
+    name: zabbix-agent
+    enabled: yes
+    state: started
+- name: Установка sendmail для отправки уведомлений
+  apt:
+    name: sendmail
+    state: present
