@@ -1,0 +1,14 @@
+#!/bin/bash
+#commit_hash=$(git rev-parse --short HEAD)
+#возьмем сразу готоввое значение хэш
+commit_hash=f68cb57
+# Переименование .py файлов с добавлением commit_hash
+for file in *.py; do
+    if [ -f "$file" ]; then
+        filename="${file%.*}"         # имя без расширения
+        ext="${file##*.}"             # расширение
+        new_name="${filename}_${commit_hash}.${ext}"
+        mv "$file" "$new_name"
+        echo "Переименовано: $file → $new_name"
+    fi
+done

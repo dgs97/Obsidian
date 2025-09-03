@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Переименование .log файлов с добавлением timestamp
+for file in *.log; do
+    if [ -f "$file" ]; then
+        filename="${file%.*}"         # имя без расширения
+        ext="${file##*.}"             # расширение
+        timestamp=$(date +"%Y%m%d%H%M%S")
+        new_name="${filename}_${timestamp}.${ext}"
+        mv "$file" "$new_name"
+        echo "Переименовано: $file → $new_name"
+    fi
+done
