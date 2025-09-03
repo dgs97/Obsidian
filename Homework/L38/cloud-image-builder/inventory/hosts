@@ -1,0 +1,2 @@
+[cloud_image]
+debian12 ansible_host=192.168.122.129 ansible_user=svd ansible_ssh_private_key_file=~/.ssh/id_rsa

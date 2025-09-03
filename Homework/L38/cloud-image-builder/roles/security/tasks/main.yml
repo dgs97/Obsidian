@@ -1,0 +1,35 @@
+---
+- name: Ensure SSH directory exists
+  file:
+    path: /home/{{ enable_user }}/.ssh
+    state: directory
+    mode: '0700'
+    owner: "{{ enable_user }}"
+    group: "{{ enable_user }}"
+
+- name: Add authorized SSH key
+  authorized_key:
+    user: "{{ enable_user }}"
+    state: present
+    key: "{{ ssh_public_key }}"
+
+- name: Configure SSH daemon
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    backup: yes
+  loop:
+    - { regexp: "^PasswordAuthentication", line: 'PasswordAuthentication no' }
+    - { regexp: "^PermitRootLogin", line: 'PermitRootLogin no' }
+    - { regexp: "^MaxAuthTries", line: 'MaxAuthTries 2' }
+    - { regexp: "^ClientAliveInterval", line: 'ClientAliveInterval 360' }
+    - { regexp: "^ClientAliveCountMax", line: 'ClientAliveCountMax 2' }
+  notify: restart ssh
+
+- name: Ensure SSH service is enabled and running
+  service:
+    name: ssh
+    state: started
+    enabled: yes

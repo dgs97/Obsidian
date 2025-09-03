@@ -1,0 +1,7 @@
+{
+  "useMarkdownLinks": true,
+  "promptDelete": false,
+  "attachmentFolderPath": "./screenshots",
+  "newLinkFormat": "relative",
+  "showUnsupportedFiles": true
+}

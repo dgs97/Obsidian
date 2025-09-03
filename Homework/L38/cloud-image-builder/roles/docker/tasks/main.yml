@@ -1,0 +1,24 @@
+ # Установка Docker (базовая версия из репозитория Debian)
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+        update_cache: yes
+
+    # Установка Docker Compose (бинарник без зависимостей)
+    - name: Install Docker Compose
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/v2.24.5/docker-compose-linux-{{ 'arm64' if 'aarch64' in ansible_architecture else 'x86_64' }}"
+        dest: /usr/local/bin/docker-compose
+        mode: '0755'
+
+    - name: Check Swarm availability
+      command: docker swarm --help
+      register: swarm_check
+      changed_when: false
+      ignore_errors: yes
+    
+    - name: Debug Swarm status
+      debug:
+        msg: "Swarm is available but not initialized"
+      when: swarm_check.rc == 0

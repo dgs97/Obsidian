@@ -1,0 +1,40 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install basic packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - cloud-init
+    - cloud-guest-utils
+    - python3-pip
+    - git
+    - curl
+    - htop
+    - iotop
+    - iftop
+    - strace
+    - restic
+    - telnet
+    - traceroute
+    - tshark
+    - tcpdump
+    - nmap
+    - mtr
+    - lsof
+    #- ctop
+
+- name: Download ctop binary
+  get_url:
+    url: https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64
+    dest: /usr/local/bin/ctop
+    mode: '0755'
+    timeout: 30
+  register: download_ctop
+  until: download_ctop is succeeded
+  retries: 3
+  delay: 5

@@ -1,0 +1,13 @@
+---
+- name: Configure Universal Cloud Image
+  hosts: all
+  become: true
+  gather_facts: true
+
+  roles:
+    - role: base
+    - role: docker
+    - role: networking
+    - role: security
+    - role: motd
+    - role: zsh

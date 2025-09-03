@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: my-app-namespace
+spec:
+  type: LoadBalancer # GKE создаст внешний сетевой балансировщик нагрузки
+  selector:
+    app: nginx # Выбираем все Pods с этим лейблом
+  ports:
+    - protocol: TCP
+      port: 80 # Порт, на котором Service принимает запросы
+      targetPort: 80 # Порт, на который перенаправлять запросы в Pod

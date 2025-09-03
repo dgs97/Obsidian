@@ -1,0 +1,30 @@
+- name: Ensure MOTD directory exists
+  file:
+    path: /etc/update-motd.d
+    state: directory
+    mode: 0755
+
+- name: Clean existing MOTD files
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/motd
+    - /etc/update-motd.d/10-help-text
+    - /etc/update-motd.d/50-motd-news
+
+- name: Install system information script
+  copy:
+    dest: /etc/update-motd.d/10-sysinfo
+    content: |
+      #!/bin/bash
+      echo "System information:"
+      echo "  Hostname: $(hostname)"
+      echo "  OS: $(grep PRETTY_NAME /etc/os-release | cut -d'"' -f2)"
+      echo "  Kernel: $(uname -r)"
+      echo "  Uptime: $(uptime -p)"
+    mode: 0755
+
+- name: Update MOTD
+  command: run-parts /etc/update-motd.d/
+  changed_when: false

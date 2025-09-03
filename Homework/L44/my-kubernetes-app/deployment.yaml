@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: my-app-namespace # Указываем неймспейс!
+  labels:
+    app: nginx
+spec:
+  replicas: 3 # Желаемое количество Pods
+  selector:
+    matchLabels:
+      app: nginx
+  template: # Шаблон для создания Pods
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.25 # Используем стабильную версию
+        ports:
+        - containerPort: 80
