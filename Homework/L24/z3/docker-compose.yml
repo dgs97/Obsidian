@@ -1,0 +1,25 @@
+services:
+  python:
+    build: ./python
+    ports:
+      - "8000:8000"
+
+  go:
+    build: ./go
+    ports:
+      - "8080:8080"
+
+  node:
+    build: ./nodejs
+    ports:
+      - "3000:3000"
+  
+  cpp:
+    build: ./cpp
+    ports:
+      - "8083:8083"      
+
+  java:
+    build: ./java
+    ports:
+      - "8082:8082"

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Ой, это работает!</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ffcc00, #ff66cc);
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 3em;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .cat {
+      width: 200px;
+      margin: 20px auto;
+      animation: wiggle 3s infinite;
+    }
+
+    @keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      5% { transform: rotate(10deg); }
+      10% { transform: rotate(-10deg); }
+      15% { transform: rotate(0deg); }
+    }
+
+    p {
+      font-size: 1.5em;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #ff66cc;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #ff66cc;
+      color: #fff;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Ура! Это работает! 🎉</h1>
+
+  <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"  alt="Кот танцует" class="cat">
+
+  <p>Ваш сервер отдаёт статику как настоящий бэкенд-маг!</p>
+
+  <p>Поздравляем, вы достигли уровня "Hello World Pro".</p>
+
+  <a href="#">Не нажимать!</a>
+
+  <!-- Можно добавить скрытую музычку -->
+  <audio autoplay loop style="display:none;">
+    <source src="https://www.soundjay.com/buttons/sounds/beep-07.mp3"  type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+</body>
+</html>
