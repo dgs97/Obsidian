@@ -1,0 +1,13 @@
+# role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: pod-config-access
+rules:
+- apiGroups: [""] # "" указывает на core API group
+  resources: ["pods", "pods/log"] # Разрешаем доступ к pods и их логам
+  verbs: ["get", "list", "watch", "create", "update"]
+- apiGroups: [""]
+  resources: ["configmaps"] # Разрешаем доступ к configmaps
+  verbs: ["get", "list", "create", "update"]

@@ -1,0 +1,14 @@
+# pod-with-sa-nginx.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-with-sa
+  namespace: default
+  labels:
+    app: my-web-app
+spec:
+  serviceAccountName: pod-config-manager
+  containers:
+  - name: nginx-webserver
+    image: nginx:latest
+  restartPolicy: Never

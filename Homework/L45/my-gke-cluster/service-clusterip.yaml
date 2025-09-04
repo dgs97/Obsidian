@@ -1,0 +1,13 @@
+# service-clusterip.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-internal-service
+spec:
+  type: ClusterIP # Это значение по умолчанию, можно не указывать.
+  selector:
+    app: my-web-app # Указываем метки наших Pod'ов
+  ports:
+  - protocol: TCP
+    port: 80        # Порт, на котором сервис принимает запросы
+    targetPort: 80  # Порт, на который перенаправлять трафик в Pod

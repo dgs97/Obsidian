@@ -1,0 +1,22 @@
+# deployment-nginx.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: default
+spec:
+  replicas: 3  # ← Количество подов
+  selector:
+    matchLabels:
+      app: my-web-app 
+  template:
+    metadata:
+      labels:
+        app: my-web-app  # ← Важная метка для сервисов!
+    spec:
+      serviceAccountName: pod-config-manager
+      containers:
+      - name: nginx-webserver
+        image: nginx:latest
+        ports:
+        - containerPort: 80

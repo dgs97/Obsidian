@@ -1,0 +1,14 @@
+# service-nodeport.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nodeport-service
+spec:
+  type: NodePort
+  selector:
+    app: my-web-app
+  ports:
+  - protocol: TCP
+    port: 80        # Внутренний порт сервиса
+    targetPort: 80  # Порт Pod'а
+    nodePort: 30007 # (Опционально) Фиксированный порт в диапазоне 30000-32767. Если не указать, будет выбран случайный.
