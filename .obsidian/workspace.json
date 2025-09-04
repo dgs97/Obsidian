@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "Homework/L45/hw-45.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "hw-45"
             }
           }
         ]
@@ -171,13 +171,15 @@
   },
   "active": "3972360389e75138",
   "lastOpenFiles": [
+    "README.md",
+    "Homework/L45/hw-45.md",
+    "Homework/L45",
     "Homework/L43/hw-43.md",
     "Homework/Example.md",
     "Homework/Без названия/Без названия.md",
     "Ansible/ansible-vault.md",
     "Ansible/Ad_Hoc_commands.md",
     "Ansible",
-    "README.md",
     "Homework/L44/hw-44.md",
     "Homework/L44/screenshots/Pasted image 20250903205734.png",
     "Homework/L44/screenshots/Pasted image 20250903205237.png",
@@ -204,7 +206,6 @@
     "Homework/L48/zabbix (Копия)/zabbix.md",
     "Homework/L48/zabbix (Копия)/Zabbix-proxy.md",
     "Homework/L48/zabbix (Копия)/screenshots",
-    "Homework/L48/zabbix (Копия)",
     "Шпаргалка/zabbix (Копия)/zabbix.md",
     "Шпаргалка/zabbix (Копия)/Zabbix-proxy.md",
     "2025-08-26.md",
@@ -216,7 +217,6 @@
     "Homework/L40/hw-40.md",
     "Homework/L39/hw-39.md",
     "Homework/L30/hw-30-2.md",
-    "Homework/L31/hw-31.md",
-    "Homework/L32/hw-32.md"
+    "Homework/L31/hw-31.md"
   ]
 }
