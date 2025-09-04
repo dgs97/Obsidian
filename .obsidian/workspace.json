@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "94f394f2139b0a1d",
@@ -171,6 +172,10 @@
   },
   "active": "cf31d3dbf3e643d7",
   "lastOpenFiles": [
+    "Homework/L45/my-gke-cluster/pod-with-pvc.yaml",
+    "Homework/L45/screenshots/Pasted image 20250904230913.png",
+    "Homework/L45/my-gke-cluster/pvc-local.yaml",
+    "Homework/L45/my-gke-cluster/pv-local.yaml",
     "Homework/L45/screenshots/Pasted image 20250904212841.png",
     "Homework/L45/screenshots/Pasted image 20250904212708.png",
     "Homework/L45/screenshots/Pasted image 20250904212357.png",
@@ -185,16 +190,12 @@
     "Homework/L45/screenshots/Pasted image 20250904150545.png",
     "Homework/L45/screenshots/Pasted image 20250904150541.png",
     "Homework/L45/screenshots/Pasted image 20250904150430.png",
-    "Homework/L45/screenshots/Pasted image 20250904145830.png",
-    "Homework/L45/screenshots/Pasted image 20250904145417.png",
     "Homework/L45/screenshots",
     "Homework/L45/my-gke-cluster/serviceaccount.yaml",
     "Homework/L45/my-gke-cluster/service-nodeport.yaml",
     "Homework/L45/my-gke-cluster/service-loadbalancer.yaml",
     "Homework/L45/my-gke-cluster/service-clusterip.yaml",
     "Homework/L45/my-gke-cluster/rolebinding.yaml",
-    "Homework/L45/my-gke-cluster/role.yaml",
-    "Homework/L45/my-gke-cluster/pod-with-sa.yaml",
     "README.md",
     "Homework/L43/hw-43.md",
     "Homework/Example.md",

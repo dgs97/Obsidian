@@ -1,0 +1,23 @@
+# pv-local.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-pv
+spec:
+  capacity:
+    storage: 1Gi # Объем
+  volumeMode: Filesystem
+  accessModes:
+  - ReadWriteOnce # Режим доступа: чтение-запись одним узлом
+  persistentVolumeReclaimPolicy: Retain # Данные будут сохранены после удаления PVC
+  storageClassName: local-storage # Имя StorageClass
+  local:
+    path: /mnt/data # Путь на узле, который мы создали
+  nodeAffinity: # Важно! Привязываем PV к конкретному узлу
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - nginx-deployment-69f479fcd8-5rwqv # ЗАМЕНИТЕ на имя вашего worker node, где создана директория
